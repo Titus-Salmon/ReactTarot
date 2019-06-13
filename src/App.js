@@ -32,6 +32,7 @@ class App extends Component {
     for (let i = this.state.deckArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.state.deckArray[i].cardName, this.state.deckArray[j].cardName] = [this.state.deckArray[j].cardName, this.state.deckArray[i].cardName];
+      [this.state.deckArray[i].descUp, this.state.deckArray[j].descUp] = [this.state.deckArray[j].descUp, this.state.deckArray[i].descUp];
     }
     //end Durstenfeld shuffle
 
