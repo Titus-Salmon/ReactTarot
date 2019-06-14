@@ -9,7 +9,7 @@ const component1 = (props)=>{
             <p>{props.children}</p>
             <p>here is some dynamic content ==> {Math.floor(Math.random()*10)}</p> */}
             <h3>{props.crdName}</h3>
-            <img src={process.env.PUBLIC_URL + props.crdImgUp} alt={props.crdImgUp}></img>
+            <img src={props.crdImgUp} alt={props.crdImgUp}></img>
             <p>{props.children}</p>
         </div>
         

@@ -4,61 +4,36 @@ import logo from "./bluehyp_0001a4_LoRes2.jpg"; //t0d
 import "./App.css";
 
 import Component1 from "./Component1/Component1";
+import DeckArray from "./DeckObject/deckObj";
 
 class App extends Component {
   state = {
-    deckArray: [
-      {
-        cardName: "The Fool",
-        imgSrcUp: "./img/cardimg/00.jpg",
-        imgSrcDn: "./img/cardimg/00r.jpg",
-        descUp:
-          "Folly, mania, extravagance, intoxication, delirium, frenzy, bewrayment.",
-        descDn:
-          "Negligence, absence, distribution, carelessness, apathy, nullity, vanity."
-      },
-      {
-        cardName: "The Magician",
-        imgSrcUp: "./img/cardimg/01.jpg",
-        imgSrcDn: "./img/cardimg/01r.jpg",
-        descUp:
-          "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male.",
-        descDn: "Physician, Magus, mental disease, disgrace, disquiet."
-      },
-      {
-        cardName: "The High Priestess",
-        imgSrcUp: "./img/cardimg/02.jpg",
-        imgSrcDn: "./img/cardimg/02r.jpg",
-        descUp:
-          "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female; silence, tenacity; mystery, wisdom, science.",
-        descDn: "Passion, moral or physical ardour, conceit, surface knowledge."
-      }
-    ]
+    DeckArray
   };
 
-  deckShuffleHandler = deckArray => {
+  deckShuffleHandler = () => {
     this.setState({});
     //begin Durstenfeld shuffle
-    for (let i = this.state.deckArray.length - 1; i > 0; i--) {
+    for (let i = this.state.DeckArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.state.deckArray[i].cardName, this.state.deckArray[j].cardName] = [
-        this.state.deckArray[j].cardName,
-        this.state.deckArray[i].cardName
+      [this.state.DeckArray[i].cardName, this.state.DeckArray[j].cardName] = [
+        this.state.DeckArray[j].cardName,
+        this.state.DeckArray[i].cardName
       ];
-      [this.state.deckArray[i].imgSrcUp, this.state.deckArray[j].imgSrcUp] = [
-        this.state.deckArray[j].imgSrcUp,
-        this.state.deckArray[i].imgSrcUp
+      [this.state.DeckArray[i].imgSrcUp, this.state.DeckArray[j].imgSrcUp] = [
+        this.state.DeckArray[j].imgSrcUp,
+        this.state.DeckArray[i].imgSrcUp
       ];
-      [this.state.deckArray[i].descUp, this.state.deckArray[j].descUp] = [
-        this.state.deckArray[j].descUp,
-        this.state.deckArray[i].descUp
+      [this.state.DeckArray[i].descUp, this.state.DeckArray[j].descUp] = [
+        this.state.DeckArray[j].descUp,
+        this.state.DeckArray[i].descUp
       ];
     }
     //end Durstenfeld shuffle
 
-    for (let z = 0; z < this.state.deckArray.length; z++) {
+    for (let z = 0; z < this.state.DeckArray.length; z++) {
       //outputs shuffled deck to console
-      console.log("deckArray==>", this.state.deckArray[z].cardName);
+      console.log("DeckArray==>", this.state.DeckArray[z].cardName);
     }
   };
 
@@ -70,17 +45,26 @@ class App extends Component {
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
         <button onClick={this.deckShuffleHandler}> shuffle </button>{" "}
-        <Component1 crdName={this.state.deckArray[0].cardName} crdImgUp={this.state.deckArray[0].imgSrcUp}>
+        <Component1
+          crdName={this.state.DeckArray[0].cardName}
+          crdImgUp={this.state.DeckArray[0].imgSrcUp}
+        >
           {" "}
-          Card Meaning: {this.state.deckArray[0].descUp}{" "}
+          Card Meaning: {this.state.DeckArray[0].descUp}{" "}
         </Component1>{" "}
-        <Component1 crdName={this.state.deckArray[1].cardName} crdImgUp={this.state.deckArray[1].imgSrcUp}>
+        <Component1
+          crdName={this.state.DeckArray[1].cardName}
+          crdImgUp={this.state.DeckArray[1].imgSrcUp}
+        >
           {" "}
-          Card Meaning: {this.state.deckArray[1].descUp}{" "}
+          Card Meaning: {this.state.DeckArray[1].descUp}{" "}
         </Component1>{" "}
-        <Component1 crdName={this.state.deckArray[2].cardName} crdImgUp={this.state.deckArray[2].imgSrcUp}>
+        <Component1
+          crdName={this.state.DeckArray[2].cardName}
+          crdImgUp={this.state.DeckArray[2].imgSrcUp}
+        >
           {" "}
-          Card Meaning: {this.state.deckArray[2].descUp}{" "}
+          Card Meaning: {this.state.DeckArray[2].descUp}{" "}
         </Component1>{" "}
       </div>
     );
