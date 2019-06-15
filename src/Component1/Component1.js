@@ -1,19 +1,35 @@
-import React from 'react';
+import React from "react";
 
-const component1 = (props)=>{
-    return (
-        <div>
-            {/* <h3>here's some Component1 JSX</h3>
-            <p>this is prop1 of Component1: {props.prop1}</p>
-            <p>this is prop2 of Component1: {props.prop2}</p>
-            <p>{props.children}</p>
-            <p>here is some dynamic content ==> {Math.floor(Math.random()*10)}</p> */}
-            <h3>{props.crdName}</h3>
-            <img src={props.crdImgUp} alt={props.crdImgUp}></img>
-            <p>{props.children}</p>
+const component1 = props => {
+  return (
+    <div>
+      <div className="container1">
+        <h3>(1) Select Deck Format</h3>
+        <select id="deckSelect">
+          <option value="fullDeck">Major & Minor Arcana</option>
+          <option value="majorDeck">Major Arcana</option>
+          <option value="minorDeck">Minor Arcana</option>
+        </select>
+
+        <h3>(2) Shuffle Deck</h3>
+        <div id="shuffDiv" />
+
+        <button id="shuffle">Shuffle Deck</button>
+
+        <div id="selectDiv" className="flexShuffDiv" />
+
+        <h3>(3) Get Reading</h3>
+        <button id="getReading">Get Reading</button>
+
+        <div id="readingDiv">
+          <ul id="readingUl" />
         </div>
-        
-    );
-}
+      </div>
+      <h3>{props.crdName}</h3>
+      <img src={props.crdImgUp} alt={props.crdImgUp} />
+      <p>{props.children}</p>
+    </div>
+  );
+};
 
 export default component1;

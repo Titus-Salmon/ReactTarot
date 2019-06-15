@@ -1,5 +1,3 @@
-import React from 'react';
-
 //begin define cards as objects
 var c0 = {
     cardName: 'The Fool',
