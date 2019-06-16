@@ -6,6 +6,7 @@ const component1b = (props) => {
       <div className="container1">
         <h3>(2) Shuffle Deck</h3>
         <div id="shuffDiv" />
+        <div id="selectDiv"></div>
         {props.children}
       </div>
     </div>

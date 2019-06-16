@@ -18,6 +18,17 @@ class App extends Component {
     this.setState({
       // DeckArray
     });
+
+    const shuffleButton = document.getElementById("shuffle");
+    const shuffImg = document.getElementById("shuffDiv");
+
+    shuffleButton.addEventListener("click", () => {
+      //if there are cards present from a previous shuffle, remove them
+      while (shuffImg.children.length > 0) {
+        shuffImg.removeChild(shuffImg.lastElementChild);
+      }
+    });
+
     //begin Durstenfeld shuffle
     for (let i = this.state.DeckArray.length - 1; i > 0; i--) {
       //shuffle DeckArray
@@ -56,29 +67,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
-        
-        {/* <Component1
-          crdName={this.state.DeckArray[0].cardName}
-          crdImgUp={this.state.DeckArray[0].imgSrcUp}
-        >
-          Card Meaning: {this.state.DeckArray[0].descUp}{" "}
-        </Component1>{" "}
-        <Component1
-          crdName={this.state.DeckArray[1].cardName}
-          crdImgUp={this.state.DeckArray[1].imgSrcUp}
-        >
-          Card Meaning: {this.state.DeckArray[1].descUp}{" "}
-        </Component1>{" "}
-        <Component1
-          crdName={this.state.DeckArray[2].cardName}
-          crdImgUp={this.state.DeckArray[2].imgSrcUp}
-        >
-          Card Meaning: {this.state.DeckArray[2].descUp}{" "}
-        </Component1>{" "} */}
-        <Component1a></Component1a>
-        <Component1b><button onClick={this.deckShuffleHandler}> shuffle </button>{" "}</Component1b>
-        <Component1c></Component1c>
-        
+        <Component1a />
+        <Component1b>
+          <button id="shuffle" onClick={this.deckShuffleHandler}>
+            {" "}
+            shuffle{" "}
+          </button>{" "}
+        </Component1b>
+        <Component1c />
         <Component2 />
       </div>
     );
