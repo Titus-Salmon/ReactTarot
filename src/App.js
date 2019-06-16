@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import logo from "./bluehyp_0001a4_LoRes2.jpg"; //t0d
 import "./App.css";
 
-import Component1 from "./Component1/Component1";
+import Component1a from "./Component1/Component1a";
+import Component1b from "./Component1/Component1b";
+import Component1c from "./Component1/Component1c";
 import Component2 from "./Component2/Component2";
 import DeckArray from "./DeckObject/deckObj";
 
@@ -32,13 +34,13 @@ class App extends Component {
       console.log("DeckArray==>", this.state.DeckArray[z].cardName);
     }
 
-    this.state.DeckArray.forEach(function () {
-      var image = document.createElement('img');
-      image.src = '../img/cardimg/rider-waite-original-back.jpg';
+    this.state.DeckArray.forEach(function() {
+      var image = document.createElement("img");
+      image.src = "../img/cardimg/rider-waite-original-back.jpg";
       image.width = "100";
       image.height = "171";
-      document.getElementById('shuffDiv').appendChild(image);
-  });
+      document.getElementById("shuffDiv").appendChild(image);
+    });
   };
 
   displayShuffledDeckHandler = () => {
@@ -54,8 +56,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
-        <button onClick={this.deckShuffleHandler}> shuffle </button>{" "}
-        <Component1
+        
+        {/* <Component1
           crdName={this.state.DeckArray[0].cardName}
           crdImgUp={this.state.DeckArray[0].imgSrcUp}
         >
@@ -72,10 +74,12 @@ class App extends Component {
           crdImgUp={this.state.DeckArray[2].imgSrcUp}
         >
           Card Meaning: {this.state.DeckArray[2].descUp}{" "}
-        </Component1>{" "}
-
-        <Component2 crdImgUp={this.displayShuffledDeckHandler()}></Component2>
-        <Component2></Component2>
+        </Component1>{" "} */}
+        <Component1a></Component1a>
+        <Component1b><button onClick={this.deckShuffleHandler}> shuffle </button>{" "}</Component1b>
+        <Component1c></Component1c>
+        
+        <Component2 />
       </div>
     );
   }
