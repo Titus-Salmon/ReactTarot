@@ -10,14 +10,14 @@ import Component2 from "../components/Component2/Component2";
 import DeckArray from "../components/DeckObject/deckObj";
 
 class App extends Component {
-  state = {
-    DeckArray
-  };
+  // state = {
+  //   DeckArray
+  // };
 
   deckShuffleHandler = () => {
-    this.setState({
-      // DeckArray
-    });
+    // this.setState({
+    //   // DeckArray
+    // });
 
     const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
@@ -30,22 +30,22 @@ class App extends Component {
     });
 
     //begin Durstenfeld shuffle
-    for (let i = this.state.DeckArray.length - 1; i > 0; i--) {
+    for (let i = DeckArray.length - 1; i > 0; i--) {
       //shuffle DeckArray
       const j = Math.floor(Math.random() * (i + 1));
-      [this.state.DeckArray[i], this.state.DeckArray[j]] = [
-        this.state.DeckArray[j],
-        this.state.DeckArray[i]
+      [DeckArray[i], DeckArray[j]] = [
+        DeckArray[j],
+        DeckArray[i]
       ];
     }
     //end Durstenfeld shuffle
 
-    for (let z = 0; z < this.state.DeckArray.length; z++) {
+    for (let z = 0; z < DeckArray.length; z++) {
       //outputs shuffled deck to console
-      console.log("DeckArray==>", this.state.DeckArray[z].cardName);
+      console.log("DeckArray==>", DeckArray[z].cardName);
     }
 
-    this.state.DeckArray.forEach(function() {
+    DeckArray.forEach(function() {
       //show deck of cards (back of cards) when clicking 'shuffle' button
       var image = document.createElement("img");
       image.src = "../img/cardimg/rider-waite-original-back.jpg";
