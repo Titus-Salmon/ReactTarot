@@ -10,14 +10,8 @@ import Component2 from "../components/Component2/Component2";
 import DeckArray from "../components/DeckObject/deckObj";
 
 class App extends Component {
-  // state = {
-  //   DeckArray
-  // };
 
   deckShuffleHandler = () => {
-    // this.setState({
-    //   // DeckArray
-    // });
 
     const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
@@ -55,45 +49,6 @@ class App extends Component {
     });
   };
 
-  selectCardHandler = () => {
-    // var up_dn_array = [];
-    // //push clicked card into selectedArray & make clicked card from shuffled deck invisible;
-    // document.getElementById("shuffDiv").addEventListener("click", function(e) {
-    //   const nodelistShuff = document.querySelectorAll("#shuffDiv");
-    //   var shuffArray = Array.from(nodelistShuff);
-    //   var shuffArr = Array.from(shuffArray[0].children);
-    //   var index = shuffArr.indexOf(e.target);
-    //   console.log(index);
-    //   if (index > -1) {
-    //     selectedArray.push(deckToShuffle[index]);
-    //   }
-    //   console.log("selectedArray===>", selectedArray);
-    //   console.log("e.target==>", e.target);
-
-    //   if (
-    //     deckToShuffle[index] !== undefined &&
-    //     e.target.style.visibility !== "hidden"
-    //   ) {
-    //     //turn over clicked card in #selectDiv
-    //     e.target.style.visibility = "hidden";
-    //     var image = document.createElement("img");
-
-    //     Math.random() > 0.5
-    //       ? (image.src = deckToShuffle[index].imgSrcUp)
-    //       : (image.src = deckToShuffle[index].imgSrcDn); //flip coin for up or down card
-    //     up_dn_array.push(image.src);
-    //     console.log("up_dn_array==>", up_dn_array);
-    //     document.getElementById("selectDiv").appendChild(image);
-    //   }
-    // });
-  };
-
-  // displayShuffledDeckHandler = () => {
-  //   for (let n = 0; n < this.state.DeckArray.length; n++) {
-  //     return this.state.DeckArray[n].imgSrcUp;
-  //   }
-  // };
-
   render() {
     return (
       <div className="App">
@@ -102,12 +57,7 @@ class App extends Component {
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
         <Component1a />
-        <Component1b clicked={this.deckShuffleHandler}>
-          {/* <button id="shuffle" onClick={this.deckShuffleHandler}>
-            {" "}
-            shuffle{" "}
-          </button>{" "} */}
-        </Component1b>
+        <Component1b clicked={this.deckShuffleHandler} />
         <Component1c />
         <Component2 />
       </div>
