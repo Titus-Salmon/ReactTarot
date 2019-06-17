@@ -102,11 +102,11 @@ class App extends Component {
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
         <Component1a />
-        <Component1b>
-          <button id="shuffle" onClick={this.deckShuffleHandler}>
+        <Component1b clicked={this.deckShuffleHandler}>
+          {/* <button id="shuffle" onClick={this.deckShuffleHandler}>
             {" "}
             shuffle{" "}
-          </button>{" "}
+          </button>{" "} */}
         </Component1b>
         <Component1c />
         <Component2 />

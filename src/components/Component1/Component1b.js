@@ -9,6 +9,7 @@ const component1b = (props) => {
         <div id="selectDiv"></div>
         {props.children}
       </div>
+      <button id="shuffle" onClick={props.clicked}>component1b shuffle button</button>
     </div>
   );
 };
