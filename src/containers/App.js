@@ -37,32 +37,32 @@ class App extends Component {
 
     const deckSelectId = document.getElementById("deckSelect");
     /** begin set deckToShuffleArray based on selected option in dropdown*/
-    deckSelectId.addEventListener("change", () => {
-      var deckSelectValue =
-        deckSelectId.options[deckSelectId.selectedIndex].value;
-      console.log("selectedDeck==>", deckSelectValue);
-      if (deckSelectValue !== "fullDeck") {
-        if (deckSelectValue === "majorDeck") {
-          deckToShuffle = [...majorDeckArray];
-        } else {
-          deckToShuffle = [...minorDeckArray];
-        }
+    // deckSelectId.addEventListener("change", () => {
+    var deckSelectValue =
+      deckSelectId.options[deckSelectId.selectedIndex].value;
+    console.log("selectedDeck==>", deckSelectValue);
+    if (deckSelectValue !== "fullDeck") {
+      if (deckSelectValue === "majorDeck") {
+        deckToShuffle = [...majorDeckArray];
       } else {
-        deckToShuffle = [...DeckArray];
+        deckToShuffle = [...minorDeckArray];
       }
-    });
+    } else {
+      deckToShuffle = [...DeckArray];
+    }
+    // });
   };
 
   deckShuffleHandler = () => {
     const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
 
-    shuffleButton.addEventListener("click", () => {
-      //if there are cards present from a previous shuffle, remove them
-      while (shuffImg.children.length > 0) {
-        shuffImg.removeChild(shuffImg.lastElementChild);
-      }
-    });
+    // shuffleButton.addEventListener("click", () => {
+    //if there are cards present from a previous shuffle, remove them
+    while (shuffImg.children.length > 0) {
+      shuffImg.removeChild(shuffImg.lastElementChild);
+    }
+    // });
 
     //begin Durstenfeld shuffle
     for (let i = deckToShuffle.length - 1; i > 0; i--) {
