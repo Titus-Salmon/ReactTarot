@@ -9,10 +9,51 @@ import Component1c from "../components/Component1/Component1c";
 import Component2 from "../components/Component2/Component2";
 import DeckArray from "../components/DeckObject/deckObj";
 
+let deckToShuffle = [...DeckArray];
+
 class App extends Component {
+  deckSelectedHandler = () => {
+    var minorDeckArray = [];
+
+    function createMinor() {
+      //create Minor Arcana deck from imported entire deck
+      for (let i = 22; i < 78; i++) {
+        minorDeckArray.push(DeckArray[i]);
+      }
+    }
+    createMinor();
+    console.log("minorDeckArray===>", minorDeckArray);
+
+    var majorDeckArray = [];
+
+    function createMajor() {
+      //create Major Arcana deck from imported entire deck
+      for (let i = 0; i < 22; i++) {
+        majorDeckArray.push(DeckArray[i]);
+      }
+    }
+    createMajor();
+    console.log("majorDeckArray===>", majorDeckArray);
+
+    const deckSelectId = document.getElementById("deckSelect");
+    /** begin set deckToShuffleArray based on selected option in dropdown*/
+    deckSelectId.addEventListener("change", () => {
+      var deckSelectValue =
+        deckSelectId.options[deckSelectId.selectedIndex].value;
+      console.log("selectedDeck==>", deckSelectValue);
+      if (deckSelectValue !== "fullDeck") {
+        if (deckSelectValue === "majorDeck") {
+          deckToShuffle = [...majorDeckArray];
+        } else {
+          deckToShuffle = [...minorDeckArray];
+        }
+      } else {
+        deckToShuffle = [...DeckArray];
+      }
+    });
+  };
 
   deckShuffleHandler = () => {
-
     const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
 
@@ -24,22 +65,22 @@ class App extends Component {
     });
 
     //begin Durstenfeld shuffle
-    for (let i = DeckArray.length - 1; i > 0; i--) {
-      //shuffle DeckArray
+    for (let i = deckToShuffle.length - 1; i > 0; i--) {
+      //shuffle deckToShuffle
       const j = Math.floor(Math.random() * (i + 1));
-      [DeckArray[i], DeckArray[j]] = [
-        DeckArray[j],
-        DeckArray[i]
+      [deckToShuffle[i], deckToShuffle[j]] = [
+        deckToShuffle[j],
+        deckToShuffle[i]
       ];
     }
     //end Durstenfeld shuffle
 
-    for (let z = 0; z < DeckArray.length; z++) {
+    for (let z = 0; z < deckToShuffle.length; z++) {
       //outputs shuffled deck to console
-      console.log("DeckArray==>", DeckArray[z].cardName);
+      console.log("deckToShuffle==>", deckToShuffle[z].cardName);
     }
 
-    DeckArray.forEach(function() {
+    deckToShuffle.forEach(function() {
       //show deck of cards (back of cards) when clicking 'shuffle' button
       var image = document.createElement("img");
       image.src = "../img/cardimg/rider-waite-original-back.jpg";
@@ -56,7 +97,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title"> React Tarot App </h1>{" "}
         </header>{" "}
-        <Component1a />
+        {/* <Component1a /> */}
+        <Component1a changed={this.deckSelectedHandler} />
         <Component1b clicked={this.deckShuffleHandler} />
         <Component1c />
         <Component2 />

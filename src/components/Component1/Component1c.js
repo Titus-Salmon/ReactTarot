@@ -1,6 +1,6 @@
 import React from "react";
 
-const component3 = props => {
+const component1c = props => {
   return (
     <div>
       <div className="container1">
@@ -15,4 +15,4 @@ const component3 = props => {
   );
 };
 
-export default component3;
+export default component1c;
