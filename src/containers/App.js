@@ -6,10 +6,12 @@ import "./App.css";
 import Component1a from "../components/Component1/Component1a";
 import Component1b from "../components/Component1/Component1b";
 import Component1c from "../components/Component1/Component1c";
-import Component2 from "../components/Component2/Component2";
+// import Component2 from "../components/Component2/Component2";
 import DeckArray from "../components/DeckObject/deckObj";
 
 let deckToShuffle = [...DeckArray];
+let up_dn_array = [];
+let selectedArray = [];
 
 class App extends Component {
   deckSelectedHandler = () => {
@@ -54,7 +56,15 @@ class App extends Component {
   };
 
   deckShuffleHandler = () => {
-    const shuffleButton = document.getElementById("shuffle");
+    selectedArray = []; //clear previous selectedArray
+
+    const selecImg = document.getElementById("selectDiv");
+    //if there are selected cards present from a previous shuffle, remove them
+    while (selecImg.children.length > 0) {
+      selecImg.removeChild(selecImg.lastElementChild);
+    }
+
+    // const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
 
     // shuffleButton.addEventListener("click", () => {
@@ -63,6 +73,14 @@ class App extends Component {
       shuffImg.removeChild(shuffImg.lastElementChild);
     }
     // });
+
+    //add (2a) instructions
+    var shuffInstr = document.createElement("h3");
+    var shuffInstr_text = document.createTextNode(
+      "(2a) Click cards to select from deck"
+    );
+    shuffInstr.appendChild(shuffInstr_text);
+    shuffImg.appendChild(shuffInstr);
 
     //begin Durstenfeld shuffle
     for (let i = deckToShuffle.length - 1; i > 0; i--) {
@@ -90,6 +108,35 @@ class App extends Component {
     });
   };
 
+  cardSelectHandler = e => {
+    const nodelistShuff = document.querySelectorAll("#shuffDiv");
+    var shuffArray = Array.from(nodelistShuff);
+    var shuffArr = Array.from(shuffArray[0].children);
+    var index = shuffArr.indexOf(e.target);
+    console.log(index);
+    if (index > -1) {
+      selectedArray.push(deckToShuffle[index]);
+    }
+    console.log("selectedArray===>", selectedArray);
+    console.log("e.target==>", e.target);
+
+    if (
+      deckToShuffle[index] !== undefined &&
+      e.target.style.visibility !== "hidden"
+    ) {
+      //turn over clicked card in #selectDiv
+      e.target.style.visibility = "hidden";
+      var image = document.createElement("img");
+
+      Math.random() > 0.5
+        ? (image.src = deckToShuffle[index].imgSrcUp)
+        : (image.src = deckToShuffle[index].imgSrcDn); //flip coin for up or down card
+      up_dn_array.push(image.src);
+      console.log("up_dn_array==>", up_dn_array);
+      document.getElementById("selectDiv").appendChild(image);
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -99,9 +146,12 @@ class App extends Component {
         </header>{" "}
         {/* <Component1a /> */}
         <Component1a changed={this.deckSelectedHandler} />
-        <Component1b clicked={this.deckShuffleHandler} />
+        <Component1b
+          clicked={this.deckShuffleHandler}
+          selectCard={this.cardSelectHandler}
+        />
         <Component1c />
-        <Component2 />
+        {/* <Component2 /> */}
       </div>
     );
   }
