@@ -5,7 +5,7 @@ const component1c = (props) => {
     <div>
       <div className="container1">
         <h3>(3) Get Reading</h3>
-        <button id="getReading">Get Reading</button>
+        <button id="getReading" onClick={props.clicked}>Get Reading</button>
 
         <div id="readingDiv">
           <ul id="readingUl" />

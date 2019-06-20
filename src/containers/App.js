@@ -64,6 +64,15 @@ class App extends Component {
       selecImg.removeChild(selecImg.lastElementChild);
     }
 
+    //if there are reading results present from a previous reading, remove them
+    var readingUl = document.getElementById("readingUl");
+    while (readingUl.children.length > 0) {
+      readingUl.removeChild(readingUl.lastElementChild);
+    }
+
+    //if there are up_dn_array results from previous shuffle, remove them
+    up_dn_array = [];
+
     // const shuffleButton = document.getElementById("shuffle");
     const shuffImg = document.getElementById("shuffDiv");
 
@@ -111,10 +120,10 @@ class App extends Component {
   cardSelectHandler = e => {
     const nodelistShuff = document.querySelectorAll("#shuffDiv");
     var shuffArray = Array.from(nodelistShuff);
-    console.log('shuffArray==>', shuffArray)
+    console.log("shuffArray==>", shuffArray);
     var shuffArr = Array.from(shuffArray[0].children);
-    console.log('shuffArr==>', shuffArr)
-    var index = shuffArr.indexOf(e.target)-1; //fix bug that wouldn't allow choosing last card in shuffled deck
+    console.log("shuffArr==>", shuffArr);
+    var index = shuffArr.indexOf(e.target) - 1; //fix bug that wouldn't allow choosing last card in shuffled deck
     //(we have to subtract 1 from var index above, because it actually includes the h3 element as one of the children of shuffArray[0])
     //doing so puts us back at a zero-based index situation, allowing us to select all card elements of the array
     console.log(index);
@@ -141,6 +150,62 @@ class App extends Component {
     }
   };
 
+  getReadingHandler = () => {
+    console.log("your reading", selectedArray);
+    //if there are reading results present from a previous reading, remove them
+    var readingUl = document.getElementById("readingUl");
+    while (readingUl.children.length > 0) {
+      readingUl.removeChild(readingUl.lastElementChild);
+    }
+
+    for (let i = 0; i < up_dn_array.length; i++) {
+      var reg1 = /r.jpg/; //regexp to check whether image is upright or reversed
+      if (up_dn_array[i].match(reg1)) {
+        console.log(selectedArray[i].imgSrcDn);
+        var readingUl = document.getElementById("readingUl");
+        var readingLi = document.createElement("li");
+        readingLi.style.listStyle = "none";
+        var readingLi_name = document.createElement("h4");
+        var readingLi_name_text = document.createTextNode(
+          selectedArray[i].cardName + " (dn)"
+        );
+        readingLi_name.appendChild(readingLi_name_text);
+
+        var readingLi_desc = document.createElement("p");
+        var readingLi_desc_text = document.createTextNode(
+          selectedArray[i].descDn
+        );
+        readingLi_desc.appendChild(readingLi_desc_text);
+
+        readingLi.appendChild(readingLi_name);
+        readingLi.appendChild(readingLi_desc);
+
+        readingUl.appendChild(readingLi);
+      } else {
+        console.log(selectedArray[i].imgSrcUp);
+        var readingUl = document.getElementById("readingUl");
+        var readingLi = document.createElement("li");
+        readingLi.style.listStyle = "none";
+        var readingLi_name = document.createElement("h4");
+        var readingLi_name_text = document.createTextNode(
+          selectedArray[i].cardName + " (up)"
+        );
+        readingLi_name.appendChild(readingLi_name_text);
+
+        var readingLi_desc = document.createElement("p");
+        var readingLi_desc_text = document.createTextNode(
+          selectedArray[i].descUp
+        );
+        readingLi_desc.appendChild(readingLi_desc_text);
+
+        readingLi.appendChild(readingLi_name);
+        readingLi.appendChild(readingLi_desc);
+
+        readingUl.appendChild(readingLi);
+      }
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -154,7 +219,7 @@ class App extends Component {
           clicked={this.deckShuffleHandler}
           selectCard={this.cardSelectHandler}
         />
-        <Component1c />
+        <Component1c clicked={this.getReadingHandler} />
         {/* <Component2 /> */}
       </div>
     );
