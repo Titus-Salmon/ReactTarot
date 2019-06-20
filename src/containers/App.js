@@ -111,8 +111,12 @@ class App extends Component {
   cardSelectHandler = e => {
     const nodelistShuff = document.querySelectorAll("#shuffDiv");
     var shuffArray = Array.from(nodelistShuff);
+    console.log('shuffArray==>', shuffArray)
     var shuffArr = Array.from(shuffArray[0].children);
-    var index = shuffArr.indexOf(e.target);
+    console.log('shuffArr==>', shuffArr)
+    var index = shuffArr.indexOf(e.target)-1; //fix bug that wouldn't allow choosing last card in shuffled deck
+    //(we have to subtract 1 from var index above, because it actually includes the h3 element as one of the children of shuffArray[0])
+    //doing so puts us back at a zero-based index situation, allowing us to select all card elements of the array
     console.log(index);
     if (index > -1) {
       selectedArray.push(deckToShuffle[index]);
