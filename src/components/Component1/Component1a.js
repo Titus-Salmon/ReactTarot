@@ -1,6 +1,6 @@
 import React from "react";
 
-const component1a = (props) => {
+const component1a = props => {
   return (
     <div>
       <div className="container1">
@@ -11,9 +11,6 @@ const component1a = (props) => {
           <option value="minorDeck">Minor Arcana</option>
         </select>
       </div>
-      {/* <h3>{props.crdName}</h3>
-      <img src={props.crdImgUp} alt={props.crdImgUp} />
-      <p>{props.children}</p> */}
     </div>
   );
 };
